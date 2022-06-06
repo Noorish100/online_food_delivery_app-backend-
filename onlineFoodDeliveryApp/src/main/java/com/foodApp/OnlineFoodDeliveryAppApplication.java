@@ -1,4 +1,4 @@
-package com.masai;
+package com.foodApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,4 @@ public class OnlineFoodDeliveryAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OnlineFoodDeliveryAppApplication.class, args);
 	}
-
 }
