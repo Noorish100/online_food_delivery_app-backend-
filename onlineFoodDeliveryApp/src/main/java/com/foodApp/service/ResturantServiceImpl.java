@@ -1,16 +1,12 @@
 package com.foodApp.service;
 
-import java.lang.StackWalker.Option;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.foodApp.model.Resturant;
 import com.foodApp.repository.ResturantDao;
-import com.masai.exception.StudentException;
-import com.masai.model.Student;
+
 
 @Service
 public class ResturantServiceImpl implements ResturantService{
