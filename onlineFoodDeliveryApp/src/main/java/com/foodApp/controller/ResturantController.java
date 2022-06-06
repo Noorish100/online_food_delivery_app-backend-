@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 package com.foodApp.controller;
 
 import java.util.List;
@@ -84,9 +82,7 @@ public class ResturantController{
 	}
 	
 }
-=======
-=======
->>>>>>> d79433f9322af9526fa4fbf0194ff051d5d9fbb8
+
 //package com.foodApp.controller;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -111,7 +107,3 @@ public class ResturantController{
 //		return r;
 //	}
 //}
-<<<<<<< HEAD
->>>>>>> d79433f9322af9526fa4fbf0194ff051d5d9fbb8
-=======
->>>>>>> d79433f9322af9526fa4fbf0194ff051d5d9fbb8
