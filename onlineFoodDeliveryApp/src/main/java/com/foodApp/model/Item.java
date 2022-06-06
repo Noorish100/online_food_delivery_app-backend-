@@ -2,12 +2,16 @@ package com.foodApp.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,7 +40,9 @@ public class Item {
 	@NotNull(message = "Please provide Cost of Item")
 	private Double cost;
 	
-	//private Address addr;
-	
+//	@JsonIgnore
+//	@OneToOne(optional = false, cascade = CascadeType.ALL)
+//	private Address addr;
+
 	private List<Resturant> resturant;
 }

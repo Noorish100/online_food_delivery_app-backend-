@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.foodApp.model.Resturant;
 import com.foodApp.service.ResturantService;
+import com.foodApp.service.ResturantServiceImpl;
 
 
 @RestController
 public class ResturantController{
 	
 	@Autowired
-	private ResturantService resSer;
+	private ResturantServiceImpl resSer;
 	
 	@PostMapping("/Resturant")
 	public Resturant saveResturant(@Valid @RequestBody Resturant res) {

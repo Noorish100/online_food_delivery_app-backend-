@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 
-@ComponentScan(basePackages = {"com.foodApp"})
+@ComponentScan("com.foodApp")
 @Configuration
 @SpringBootApplication
 public class OnlineFoodDeliveryAppApplication {

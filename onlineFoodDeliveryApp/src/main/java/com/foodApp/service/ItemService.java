@@ -2,8 +2,11 @@ package com.foodApp.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.foodApp.model.Item;
 import com.foodApp.model.Resturant;
+
 
 public interface ItemService {
 	

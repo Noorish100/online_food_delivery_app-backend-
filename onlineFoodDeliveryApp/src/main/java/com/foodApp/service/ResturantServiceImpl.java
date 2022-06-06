@@ -3,12 +3,14 @@ package com.foodApp.service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import com.foodApp.model.Resturant;
 import com.foodApp.repository.ItemDao;
 import com.foodApp.repository.ResturantDao;
 
-@Service
+
+@Component
 public class ResturantServiceImpl implements ResturantService{
 
 	@Autowired
