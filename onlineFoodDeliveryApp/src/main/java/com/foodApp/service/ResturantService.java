@@ -12,10 +12,9 @@ public interface ResturantService {
 	
 	public Resturant removeResturant(Resturant res);
 	
-	public Resturant viewResturant(Resturant res);
+	public Resturant viewResturantByResturantId(Resturant res);
 	
 	public List<Resturant> viewNearByResturant(String location);
 	
 	public List<Resturant> viewResturantByItemName(String name);
-	
 }
