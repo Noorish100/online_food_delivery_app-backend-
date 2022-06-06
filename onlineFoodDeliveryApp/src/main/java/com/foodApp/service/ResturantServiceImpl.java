@@ -19,6 +19,7 @@ public class ResturantServiceImpl implements ResturantService{
 	private ItemDao iDao;
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	@Override
 	public Resturant addResturant(Resturant res) {
 		// TODO Auto-generated method stub
@@ -27,11 +28,15 @@ public class ResturantServiceImpl implements ResturantService{
 =======
 
 >>>>>>> d79433f9322af9526fa4fbf0194ff051d5d9fbb8
+=======
+
+>>>>>>> d79433f9322af9526fa4fbf0194ff051d5d9fbb8
 
 	@Override
 	public Resturant updateResturant(Resturant res) {
 		// TODO Auto-generated method stub
 		
+<<<<<<< HEAD
 <<<<<<< HEAD
 				Optional<Resturant> optR = rDao.findById(res.getResturantId());
 				
@@ -59,6 +64,8 @@ public class ResturantServiceImpl implements ResturantService{
 					
 		}
 =======
+=======
+>>>>>>> d79433f9322af9526fa4fbf0194ff051d5d9fbb8
 //		Optional<Resturant> optR = rdao.findById(res.getResturantId());
 //		
 //		if(optR.isPresent()) {
@@ -67,6 +74,16 @@ public class ResturantServiceImpl implements ResturantService{
 //			
 //			return rdao.save(res);
 //		}
+<<<<<<< HEAD
+>>>>>>> d79433f9322af9526fa4fbf0194ff051d5d9fbb8
+=======
+		return null;
+	}
+	
+	
+	@Override
+	public Resturant removeResturant(Resturant res) {
+		// TODO Auto-generated method stub
 >>>>>>> d79433f9322af9526fa4fbf0194ff051d5d9fbb8
 		return null;
 	}
@@ -98,17 +115,23 @@ public class ResturantServiceImpl implements ResturantService{
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 
 
 	
 =======
+=======
+>>>>>>> d79433f9322af9526fa4fbf0194ff051d5d9fbb8
 
 	@Override
 	public Resturant addResturant(Resturant res) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+<<<<<<< HEAD
+>>>>>>> d79433f9322af9526fa4fbf0194ff051d5d9fbb8
+=======
 >>>>>>> d79433f9322af9526fa4fbf0194ff051d5d9fbb8
 
 }
