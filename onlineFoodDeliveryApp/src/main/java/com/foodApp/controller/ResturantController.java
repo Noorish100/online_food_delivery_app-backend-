@@ -56,8 +56,6 @@ public class ResturantController{
 		
 		return new ResponseEntity<Resturant>(updatedResturant,HttpStatus.ACCEPTED);
 	}
-	
-	
 //	@PutMapping("/resturant/{resturantId}")
 //	public ResponseEntity<Student> updateStudentMarks(@PathVariable("roll") Integer roll,@RequestParam("marks") Integer marks) {
 //		

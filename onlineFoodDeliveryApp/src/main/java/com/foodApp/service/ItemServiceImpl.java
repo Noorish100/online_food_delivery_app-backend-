@@ -1,9 +1,13 @@
 package com.foodApp.service;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.foodApp.model.Item;
+import com.foodApp.model.Resturant;
 import com.foodApp.repository.ItemDao;
 import com.foodApp.repository.ResturantDao;
+
 
 
 @Service
@@ -11,11 +15,6 @@ public class ItemServiceImpl implements ItemService{
 	
 	@Autowired
 	private ItemDao itemDao;
-	
-	public ItemServiceImpl() {
-		// TODO Auto-generated constructor stub
-		System.out.println(itemDao);
-	}
 	
 	@Autowired
 	private ResturantDao resturantDao;
@@ -69,26 +68,28 @@ java.util.Optional<Item> optI = itemDao.findById(i);
 		return null;
 	}
 
-//	@Override
-//	public List<Item> viewAllItemResturant(Resturant res) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-//	@Override
-//	public List<Item> viewAllItemByName(String name) {
-//		
-//		Resturant n= ra.findByName(name);
-//		
-//		if(n!=null) {
-//			
-//			List<Item> il=n.getItemlist();
-//			
-//			return il;
+	@Override
+	public List<Item> viewAllItemResturant(Resturant res) {
+		List<Item> items = itemDao.findAll();
+		
+//		if(items.size()==0) {
+//			throw new NotFoundException("Beneficiaries not found");
 //		}
-//		return null;
-//		
-//	}
+		return items;
+	}
+
+	@Override
+	public List<Item> viewAllItemByName(String name) {
+		
+		Resturant n =  resturantDao.findByResturantName(name);
+		
+		if(n!= null) {
+			
+			return n.getItemlist();
+		}
+		return null;
+		
+	}
 }
 	
 	

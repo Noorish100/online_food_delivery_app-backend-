@@ -1,17 +1,13 @@
 package com.foodApp.model;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,32 +16,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Item{
+public class Address {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer itemId;
-	
-	@NotNull(message = "Please provide itemName")
-	@Size(max = 25, message = "Please provide Valid itemName")
-	private String itemName;
-	
-	@NotNull(message = "Please provide Quantity")
-	private Integer quantity;
-	
-	@NotNull(message = "Please provide Cost of Item")
-	private Double cost;
+	private Integer addressId;
+	private String buildingName;
+	private String streetNo;
+	private String area;
+	private String city;
+	private String State;
+	private String country;
+	private String pinCode;
 	
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Resturant res;
-
-	@Embedded
-	private List<Resturant> resturant;
+	@OneToOne(cascade =  CascadeType.ALL )
+	private Resturant rest;
 }

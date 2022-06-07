@@ -20,4 +20,6 @@ public interface ResturantService {
 	public List<Resturant> viewNearByResturant(String location);
 	
 	public List<Resturant> viewResturantByItemName(String name);
+	
+	//public List<Item> addAllItems(Item i);
 }

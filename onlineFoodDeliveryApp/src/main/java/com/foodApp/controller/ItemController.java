@@ -55,11 +55,11 @@ public class ItemController{
 		return iSer.viewItem(itm);
 	}
 
-//	@GetMapping("/resturant/{resturantName}")
-//	public ResponseEntity<List<Item>> viewResturant(String name){
-//		List<Item> items= iSer.viewAllItemByName(name);
-//	
-//		return new ResponseEntity<List<Item>>(items, HttpStatus.OK);
-//	}
+	@GetMapping("/resturant/{resturantName}")
+	public ResponseEntity<List<Item>> viewResturant(String name){
+		List<Item> items= iSer.(name);
+	
+		return new ResponseEntity<List<Item>>(items, HttpStatus.OK);
+	}
 }
 
