@@ -25,7 +25,7 @@ import com.foodApp.service.ResturantServiceImpl;
 public class ResturantController{
 	
 	@Autowired
-	private ResturantServiceImpl resSer;
+	private ResturantService resSer;
 	
 	@PostMapping("/Resturant")
 	public Resturant saveResturant(@Valid @RequestBody Resturant res) {

@@ -20,12 +20,9 @@ import com.foodApp.service.ItemServiceImpl;
 
 @RestController
 public class ItemController{
-	
-	
-	
-	
+		
 	@Autowired
-	private ItemServiceImpl iSer;
+	private ItemService iSer;
 	
 	@PostMapping("/Item")
 	public Item saveItem(@Valid @RequestBody Item item) {
@@ -57,11 +54,11 @@ public class ItemController{
 		return item;
 	}
 
-	@GetMapping("/resturant/{resturantName}")
-	public ResponseEntity<List<Item>> viewResturant(String name){
-		List<Item> items= iSer.viewAllItemByName(name);
-	
-		return new ResponseEntity<List<Item>>(items, HttpStatus.OK);
-	}
+//	@GetMapping("/resturant/{resturantName}")
+//	public ResponseEntity<List<Item>> viewResturant(String name){
+//		List<Item> items= iSer.viewAllItemByName(name);
+//	
+//		return new ResponseEntity<List<Item>>(items, HttpStatus.OK);
+//	}
 }
 

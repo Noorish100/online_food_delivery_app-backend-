@@ -10,44 +10,44 @@ import com.foodApp.repository.ItemDao;
 import com.foodApp.repository.ResturantDao;
 
 
-@Component
+@Service
 public class ResturantServiceImpl implements ResturantService{
 
 	@Autowired
-	private ResturantDao rDao;
+	private ResturantDao resturantDao;
 	@Autowired
-	private ItemDao iDao;
+	private ItemDao itemDao;
 	
 	@Override
 	public Resturant addResturant(Resturant res) {
 		// TODO Auto-generated method stub
-		return rDao.save(res);
+		return resturantDao.save(res);
 	}
 	@Override
 	public Resturant updateResturant(Resturant res) {
 		// TODO Auto-generated method stub
 		
-				Optional<Resturant> optR = rDao.findById(res.getResturantId());
+				Optional<Resturant> optR = resturantDao.findById(res.getResturantId());
 				
 				if(optR.isPresent()) {
 					
 					Resturant existingResturant= optR.get();
 					
-					return rDao.save(res);
+					return resturantDao.save(res);
 				}
 				return null;
 	}
 
 	@Override
 	public Resturant removeResturant(Resturant res) {
-		Optional<Resturant> optR = rDao.findById(res.getResturantId());
+		Optional<Resturant> optR = resturantDao.findById(res.getResturantId());
 		
 		if(optR.isPresent()) {
 			
 			Resturant existingResturant= optR.get();
 			
 			
-		   rDao.delete(existingResturant);
+			resturantDao.delete(existingResturant);
 		   
 		   return res;
 		}
@@ -67,7 +67,7 @@ public class ResturantServiceImpl implements ResturantService{
 
 	@Override
 	public Resturant viewResturantByResturantId(Resturant res) {
-   Optional<Resturant> optR = rDao.findById(res.getResturantId());
+   Optional<Resturant> optR = resturantDao.findById(res.getResturantId());
 		
 		if(optR.isPresent()) {
 			
