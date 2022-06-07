@@ -8,6 +8,7 @@ import com.foodApp.model.Resturant;
 public interface ResturantDao extends JpaRepository<Resturant, Integer>{
 	
 	public Resturant findByResturantName(String Name);
+
 }
 
  

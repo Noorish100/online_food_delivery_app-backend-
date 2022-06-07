@@ -2,6 +2,7 @@ package com.foodApp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import com.foodApp.model.Item;
 import com.foodApp.model.Resturant;
@@ -22,21 +23,25 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public Item addItem(Item i) {
 		// TODO Auto-generated method stub
-		return itemDao.save(null);
+		return itemDao.save(i);
 	}
 
 	@Override
-	public Item updateItem(Item i) {
+	public Item updateItem(Item i)   {
 		// TODO Auto-generated method stub
 		java.util.Optional<Item> optI = itemDao.findById(i.getItemId());
-				
+
+	
 		if(optI.isPresent()) {
 			
 			Item existingItem= optI.get();
 			
 			return itemDao.save(i);
 		}
-		return null;
+		else {
+			throw new NotFoundException("no item")
+		}
+	  
 	}
 	
 

@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -44,6 +45,11 @@ public class Resturant{
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "addressId")
 	private Address addr;
-	@Embedded
-	private List<Item> itemlist = new ArrayList<Item>();
+	
+//	@Embedded
+//	private List<Item> itemlist = new ArrayList<Item>();
+	@JsonIgnore
+	@OneToMany
+	@JoinColumn(name = "itemId")
+	private List<Item> itemlist;
 }
