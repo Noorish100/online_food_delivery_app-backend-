@@ -13,9 +13,9 @@ public interface ResturantService {
 	
 	public Resturant updateResturant(Resturant res);
 	
-	public Resturant removeResturant(Resturant res);
+	public Resturant removeResturant(Integer resturantId);
 	
-	public Resturant viewResturantByResturantId(Resturant res);
+	public Resturant viewResturantByResturantId(Integer resturantId);
 	
 	public List<Resturant> viewNearByResturant(String location);
 	

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,25 +34,25 @@ public class ItemController{
 	}
 	
 	@PutMapping("/Item")
-	public ResponseEntity<Item> updateStudentHandler(@Valid @RequestBody Item item){
+	public ResponseEntity<Item> updateItem(@Valid @RequestBody Item item){
 		
 		Item updatedResturant=iSer.updateItem(item);
 		
 		return new ResponseEntity<Item>(updatedResturant,HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/Item")
+	@DeleteMapping("/Item/{itemId}")
 	
-	public Item deleteResturant(@Valid @RequestBody Item itm){
+	public Item deleteItemById(@PathVariable("itemId") Integer itm){
 		
 		return iSer.removeItem(itm);
 	}
 		
 	
-	@GetMapping("/Item")
-	public Item getItemByItemId(@Valid @RequestBody Item item) {
+	@GetMapping("/Item/{itemId}")
+	public Item getItemByItemId(@PathVariable("itemId") Integer itm) {
 			
-		return item;
+		return iSer.viewItem(itm);
 	}
 
 //	@GetMapping("/resturant/{resturantName}")

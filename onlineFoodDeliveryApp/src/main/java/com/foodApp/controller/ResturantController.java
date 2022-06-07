@@ -35,22 +35,22 @@ public class ResturantController{
 		return r;
 	}
 	
-	@GetMapping("/resturant")
-	public Resturant getStudentByresturantId(@Valid @RequestBody Resturant re) {
+	@GetMapping("/resturantId/{resturantId}")
+	public Resturant getStudentByresturantId(@PathVariable ("resturantId") Integer rId) {
 			
-		return resSer.viewResturantByResturantId(re);		
+		return resSer.viewResturantByResturantId(rId);		
 	}
 	
 	
-	@DeleteMapping("/resturant")
-	public Resturant deleteResturant(@Valid @RequestBody Resturant re){
+	@DeleteMapping("/resturant/{resturantId}")
+	public Resturant deleteResturant(@PathVariable ("resturantId") Integer rId){
 		
-		return resSer.removeResturant(re);
+		return resSer.removeResturant(rId);
 	}
 	
 	
 	@PutMapping("/resturant")
-	public ResponseEntity<Resturant> updateStudentHandler(@Valid @RequestBody Resturant rest){
+	public ResponseEntity<Resturant> updateResturant(@Valid @RequestBody Resturant rest){
 		
 		Resturant updatedResturant=resSer.updateResturant(rest);
 		
@@ -66,9 +66,8 @@ public class ResturantController{
 //		return new ResponseEntity<Student>(updatedStudent,HttpStatus.ACCEPTED);
 //		
 //	}
-	
-		
-	@GetMapping("/resturant/{itemName}")
+			
+	@GetMapping("/resturantById/{itemName}")
 	public ResponseEntity<List<Resturant>> viewResturant(String name){
 		List<Resturant> rest= resSer.viewResturantByItemName(name);
 		

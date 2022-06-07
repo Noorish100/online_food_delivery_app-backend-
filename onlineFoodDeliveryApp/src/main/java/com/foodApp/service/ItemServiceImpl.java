@@ -43,13 +43,12 @@ public class ItemServiceImpl implements ItemService{
 
 
 	@Override
-	public Item removeItem(Item i) {
-java.util.Optional<Item> optI = itemDao.findById(i.getItemId());
+	public Item removeItem(Integer i) {
+java.util.Optional<Item> optI = itemDao.findById(i);
 		
 		if(optI.isPresent()) {
 			
 			Item existingResturant= optI.get();
-			
 			
 			itemDao.delete(existingResturant);
 		   
@@ -59,8 +58,14 @@ java.util.Optional<Item> optI = itemDao.findById(i.getItemId());
 	}
 
 	@Override
-	public Item viewItem(Item i) {
-		// TODO Auto-generated method stub
+	public Item viewItem(Integer i) {
+		java.util.Optional<Item> optI = itemDao.findById(i);
+		if(optI.isPresent()) {
+			
+			Item existingResturant= optI.get();
+			
+		   return existingResturant;
+		}
 		return null;
 	}
 

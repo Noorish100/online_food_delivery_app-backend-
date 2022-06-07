@@ -14,9 +14,9 @@ public interface ItemService {
 	
 	public Item updateItem(Item i);
 	
-	public Item removeItem(Item i);
+	public Item removeItem(Integer itemId);
 	
-	public Item viewItem(Item i);
+	public Item viewItem(Integer itemId);
 	
 	//public List<Item> viewAllItemResturant(Resturant res);
 

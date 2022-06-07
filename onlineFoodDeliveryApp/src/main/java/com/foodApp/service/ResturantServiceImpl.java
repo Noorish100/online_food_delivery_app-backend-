@@ -39,8 +39,8 @@ public class ResturantServiceImpl implements ResturantService{
 	}
 
 	@Override
-	public Resturant removeResturant(Resturant res) {
-		Optional<Resturant> optR = resturantDao.findById(res.getResturantId());
+	public Resturant removeResturant(Integer res) {
+		Optional<Resturant> optR = resturantDao.findById(res);
 		
 		if(optR.isPresent()) {
 			
@@ -49,7 +49,7 @@ public class ResturantServiceImpl implements ResturantService{
 			
 			resturantDao.delete(existingResturant);
 		   
-		   return res;
+		   return existingResturant;
 		}
 		return null;
 	}
@@ -66,8 +66,8 @@ public class ResturantServiceImpl implements ResturantService{
 		
 
 	@Override
-	public Resturant viewResturantByResturantId(Resturant res) {
-   Optional<Resturant> optR = resturantDao.findById(res.getResturantId());
+	public Resturant viewResturantByResturantId(Integer res) {
+   Optional<Resturant> optR = resturantDao.findById(res);
 		
 		if(optR.isPresent()) {
 			
