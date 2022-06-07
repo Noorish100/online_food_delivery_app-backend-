@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,7 +27,7 @@ public class ItemController{
 	private ItemService iSer;
 	
 	@PostMapping("/Item")
-	public Item saveItem(@Valid @RequestBody Item item) {
+	public Item saveItem(@Valid @RequestBody Item item) throws NotFoundException {
 		
 		Item i = iSer.addItem(item);
 		
@@ -34,7 +35,7 @@ public class ItemController{
 	}
 	
 	@PutMapping("/Item")
-	public ResponseEntity<Item> updateItem(@Valid @RequestBody Item item){
+	public ResponseEntity<Item> updateItem(@Valid @RequestBody Item item) throws NotFoundException{
 		
 		Item updatedResturant=iSer.updateItem(item);
 		
@@ -43,20 +44,20 @@ public class ItemController{
 	
 	@DeleteMapping("/Item/{itemId}")
 	
-	public Item deleteItemById(@PathVariable("itemId") Integer itm){
+	public Item deleteItemById(@PathVariable("itemId") Integer itm) throws NotFoundException{
 		
 		return iSer.removeItem(itm);
 	}
 		
 	
 	@GetMapping("/Item/{itemId}")
-	public Item getItemByItemId(@PathVariable("itemId") Integer itm) {
+	public Item getItemByItemId(@PathVariable("itemId") Integer itm) throws NotFoundException {
 			
 		return iSer.viewItem(itm);
 	}
 
 	@GetMapping("/Items/{resturantName}")
-	public ResponseEntity<List<Item>> viewResturant(@PathVariable("resturantName") String name){
+	public ResponseEntity<List<Item>> viewResturant(@PathVariable("resturantName") String name) throws NotFoundException{
 		List<Item> items= iSer.viewAllItemByName(name);
 	
 		return new ResponseEntity<List<Item>>(items, HttpStatus.OK);

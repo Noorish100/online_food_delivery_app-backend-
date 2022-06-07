@@ -4,6 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
+
+import com.foodApp.Exception.ItemException;
 import com.foodApp.model.Item;
 import com.foodApp.model.Resturant;
 import com.foodApp.repository.ItemDao;
@@ -39,7 +41,7 @@ public class ItemServiceImpl implements ItemService{
 			return itemDao.save(i);
 		}
 		else {
-			throw new NotFoundException("no item")
+			throw new ItemException("Invalid item Details..");
 		}
 	  
 	}
@@ -58,7 +60,7 @@ java.util.Optional<Item> optI = itemDao.findById(i);
 		   
 		   return existingResturant;
 		}
-		return null;
+		throw new ItemException("Invalid item Details..");
 	}
 
 	@Override
@@ -70,16 +72,16 @@ java.util.Optional<Item> optI = itemDao.findById(i);
 			
 		   return existingResturant;
 		}
-		return null;
+		throw new ItemException("Invalid item Details..");
 	}
 
 	@Override
 	public List<Item> viewAllItemResturant(Resturant res) {
 		List<Item> items = itemDao.findAll();
 		
-//		if(items.size()==0) {
-//			throw new NotFoundException("Beneficiaries not found");
-//		}
+		if(items.size()==0) {
+			throw new ItemException("Invalid item Details..");
+		}
 		return items;
 	}
 
@@ -92,7 +94,7 @@ java.util.Optional<Item> optI = itemDao.findById(i);
 			
 			return n.getItemlist();
 		}
-		return null;
+		throw new ItemException("Invalid item Details..");
 		
 	}
 }
