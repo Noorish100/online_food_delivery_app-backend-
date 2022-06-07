@@ -5,9 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-
-@ComponentScan("com.foodApp")
-@Configuration
 @SpringBootApplication
 public class OnlineFoodDeliveryAppApplication {
 

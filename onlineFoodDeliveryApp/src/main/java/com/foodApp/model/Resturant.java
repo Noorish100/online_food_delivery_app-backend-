@@ -35,5 +35,5 @@ public class Resturant {
 	
 	//private Address addr;
 	
-	private List<Item> itemlist;
+	//private List<Item> itemlist;
 }
