@@ -18,7 +18,7 @@ public interface ItemService {
 	
 	public Item viewItem(Item i);
 	
-	public List<Item> viewAllItemResturant(Resturant res);
+	//public List<Item> viewAllItemResturant(Resturant res);
 
-	public List<Item> viewAllItemByName(String name);
+	//public List<Item> viewAllItemByName(String name);
 }

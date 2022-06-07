@@ -24,7 +24,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Item {
+public class Item{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,5 +44,5 @@ public class Item {
 //	@OneToOne(optional = false, cascade = CascadeType.ALL)
 //	private Address addr;
 
-	private List<Resturant> resturant;
+	//private List<Resturant> resturant;
 }
