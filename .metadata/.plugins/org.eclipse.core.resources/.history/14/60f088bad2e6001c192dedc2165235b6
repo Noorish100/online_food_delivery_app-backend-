@@ -1,0 +1,61 @@
+package com.masai.UserLogin.service;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.masai.UserLogin.exception.LoginException;
+import com.masai.UserLogin.model.CurrentUserSession;
+import com.masai.UserLogin.model.LoginData;
+import com.masai.UserLogin.model.SignUp;
+import com.masai.UserLogin.repository.CurrentUserSessionDAO;
+import com.masai.UserLogin.repository.SignUpDAO;
+
+
+public class LoginServiceImpl implements LoginService {
+
+	@Autowired
+	private SignUpDAO signUpDAO;
+	
+	@Autowired
+	private CurrentUserSessionDAO currentUserSessionDAO;
+	@Override
+	public String logInAccount(LoginData loginData) {
+		
+		Optional<SignUp> opt = signUpDAO.findByUserName(loginData.getUserName());
+		
+		if(!opt.isPresent())
+		{
+			throw new LoginException("Invalid Login UserName");
+		}
+		
+		SignUp newSignUp = opt.get();
+		
+		Integer newSignUpId = newSignUp.getUserId();
+		Optional<CurrentUserSession> currentUserOptional = currentUserSessionDAO.findByUserId(newSignUpId);
+		
+		if(currentUserOptional.isPresent()) {
+			throw new LoginException("User Already login with this UserId");
+		}
+		
+		if(newSignUp.getPassword().equals(loginData.getPassword()))
+		{
+			String key = RandomString.getRandomNumberString();
+			
+			CurrentUserSession currentUserSession = new CurrentUserSession(newSignUp.getUserId(),key,LocalDateTime.now());
+			currentUserSessionDAO.save(currentUserSession);
+			
+			return currentUserSession.toString();
+			
+		}
+		
+	}
+
+	@Override
+	public String logOutFromAccount(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

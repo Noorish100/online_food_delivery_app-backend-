@@ -1,0 +1,23 @@
+package com.masai.UserLogin.service;
+
+import com.masai.UserLogin.model.LoginData;
+
+public class LoginServiceImpl implements LoginService {
+
+	@Autowired
+	private SignUpDAO signUpDAO;
+	
+	@Autowired
+	private CurrentUserSessionDAO currentUserSessionDAO;
+	@Override
+	public String logInAccount(LoginData loginData) {
+		
+	}
+
+	@Override
+	public String logOutFromAccount(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

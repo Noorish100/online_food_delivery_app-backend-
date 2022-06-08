@@ -1,0 +1,5 @@
+package com.masai.UserLogin.service;
+
+public class RandomString {
+
+}

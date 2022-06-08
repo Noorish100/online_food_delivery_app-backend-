@@ -1,0 +1,6 @@
+package com.masai.UserLogin.service;
+
+@Service
+public class CurrentUserSessionServiceImpl implements CurrentUserSessionService {
+
+}

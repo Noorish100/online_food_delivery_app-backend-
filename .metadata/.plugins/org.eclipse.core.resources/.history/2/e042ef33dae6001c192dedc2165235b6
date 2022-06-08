@@ -1,0 +1,26 @@
+package com.masai.UserLogin.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.masai.UserLogin.model.SignUp;
+import com.masai.UserLogin.repository.SignUpDAO;
+
+public class SignUpServiceImpl implements SignUpService {
+
+
+	@Autowired
+	private SignUpDAO signUpDAO;
+	
+	@Autowired
+	private CurrentUserSessionService getCurrentLoginUserSession;
+	@Override
+	public SignUp createNewSignUp(SignUp newsignUp) {
+		SignUp signup =  
+	}
+
+	@Override
+	public SignUp updateSignUpDetails(SignUp signUp, String key) {
+		
+	}
+
+}

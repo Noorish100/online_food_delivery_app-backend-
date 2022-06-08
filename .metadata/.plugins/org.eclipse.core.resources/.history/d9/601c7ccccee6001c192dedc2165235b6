@@ -1,0 +1,11 @@
+package com.masai.UserLogin.service;
+
+import com.masai.UserLogin.model.LoginData;
+import com.masai..UserLogin.exception.LoginException;
+
+public interface LoginService {
+	
+	public String logInAccount(LoginData loginData) throws LoginException;
+	public String logOutFromAccount(String key);
+
+}

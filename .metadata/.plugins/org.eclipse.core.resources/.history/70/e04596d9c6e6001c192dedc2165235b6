@@ -1,0 +1,5 @@
+package com.masai.UserLogin.model;
+
+public class CurrentUserSession {
+
+}
