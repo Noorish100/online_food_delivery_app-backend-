@@ -13,48 +13,45 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.foodApp.model.Resturant;
-import com.foodApp.service.ResturantService;
-import com.foodApp.service.ResturantServiceImpl;
-
+import com.foodApp.model.Restaurant;
+import com.foodApp.service.RestaurantService;
 
 @RestController
 public class ResturantController{
 	
 	@Autowired
-	private ResturantService resSer;
+	private RestaurantService resSer;
 	
-	@PostMapping("/Resturant")
-	public Resturant saveResturant(@Valid @RequestBody Resturant res) {
+	@PostMapping("/resturant")
+	public ResponseEntity<Restaurant> saveResturant(@Valid @RequestBody Restaurant res) {
 		
-		Resturant r = resSer.addResturant(res);
+		Restaurant r = resSer.addResturant(res);
 		
-		return r;
+		return new ResponseEntity<Restaurant>(r,HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping("/resturantId/{resturantId}")
-	public Resturant getStudentByresturantId(@PathVariable ("resturantId") Integer rId) {
-			
-		return resSer.viewResturantByResturantId(rId);		
+	public ResponseEntity<Restaurant> getStudentByresturantId(@PathVariable ("resturantId") Integer rId){
+		
+		Restaurant r=resSer.viewResturantByResturantId(rId);	
+		return new ResponseEntity<Restaurant>(r,HttpStatus.ACCEPTED);
 	}
 	
 	
 	@DeleteMapping("/resturant/{resturantId}")
-	public Resturant deleteResturant(@PathVariable ("resturantId") Integer rId){
+	public Restaurant deleteResturant(@PathVariable ("resturantId") Integer rId){
 		
 		return resSer.removeResturant(rId);
 	}
 	
 	
 	@PutMapping("/resturant")
-	public ResponseEntity<Resturant> updateResturant(@Valid @RequestBody Resturant rest){
+	public ResponseEntity<Restaurant> updateResturant(@Valid @RequestBody Restaurant rest){
 		
-		Resturant updatedResturant=resSer.updateResturant(rest);
+		Restaurant updatedResturant=resSer.updateResturant(rest);
 		
-		return new ResponseEntity<Resturant>(updatedResturant,HttpStatus.ACCEPTED);
+		return new ResponseEntity<Restaurant>(updatedResturant,HttpStatus.ACCEPTED);
 	}
 //	@PutMapping("/resturant/{resturantId}")
 //	public ResponseEntity<Student> updateStudentMarks(@PathVariable("roll") Integer roll,@RequestParam("marks") Integer marks) {
@@ -66,17 +63,17 @@ public class ResturantController{
 //	}
 			
 	@GetMapping("/resturantById/{itemName}")
-	public ResponseEntity<List<Resturant>> viewResturant(String name){
-		List<Resturant> rest= resSer.viewResturantByItemName(name);
+	public ResponseEntity<List<Restaurant>> viewResturant(String name){
+		List<Restaurant> rest= resSer.viewResturantByItemName(name);
 		
-		return new ResponseEntity<List<Resturant>>(rest, HttpStatus.OK);
+		return new ResponseEntity<List<Restaurant>>(rest, HttpStatus.OK);
 	}
 	
 	@GetMapping("/resturant/{location}")
-	public ResponseEntity<List<Resturant>> viewResturantByLocation(String location){
-		List<Resturant> rest= resSer.viewNearByResturant(location);
+	public ResponseEntity<List<Restaurant>> viewResturantByLocation(String location){
+		List<Restaurant> rest= resSer.viewNearByResturant(location);
 		
-		return new ResponseEntity<List<Resturant>>(rest, HttpStatus.OK);
+		return new ResponseEntity<List<Restaurant>>(rest, HttpStatus.OK);
 	}
 	
 }

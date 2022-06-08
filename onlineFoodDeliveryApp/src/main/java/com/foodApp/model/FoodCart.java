@@ -8,10 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,18 +21,18 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Item{
+public class FoodCart {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer itemId;
-	private String itemName;
-	private Integer quantity;
-	private Double cost;
+	private Integer cartId;
 	
-
-	@ManyToMany(targetEntity = Restaurant.class,cascade = CascadeType.ALL)
-	@JoinColumn(name="itemId")
-	private List<Restaurant> restaurants;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Customer customer;
+	
+	@OneToMany(targetEntity = Item.class,cascade = CascadeType.ALL)
+	@JoinColumn(name="cartId", referencedColumnName = "cartId")
+	private List<Item> items;
 	
 
 }

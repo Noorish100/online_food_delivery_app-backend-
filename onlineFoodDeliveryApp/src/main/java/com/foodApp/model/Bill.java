@@ -1,17 +1,13 @@
 package com.foodApp.model;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,18 +19,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Item{
+public class Bill {
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer itemId;
-	private String itemName;
-	private Integer quantity;
-	private Double cost;
+	private Integer billId;
+	private LocalDateTime datetime;
+	private Double totalAmount;
+	private Integer totalItem;
+	@OneToOne(cascade = CascadeType.ALL)
+	private OrderDetails order;
 	
-
-	@ManyToMany(targetEntity = Restaurant.class,cascade = CascadeType.ALL)
-	@JoinColumn(name="itemId")
-	private List<Restaurant> restaurants;
-	
-
 }

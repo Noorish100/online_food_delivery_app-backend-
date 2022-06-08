@@ -3,15 +3,16 @@ package com.foodApp.service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import com.foodApp.model.Resturant;
+
+import com.foodApp.Exception.ResturantNotFoundException;
+import com.foodApp.model.Restaurant;
 import com.foodApp.repository.ItemDao;
 import com.foodApp.repository.ResturantDao;
 
 
 @Service
-public class ResturantServiceImpl implements ResturantService{
+public class RestaurantServiceImpl implements RestaurantService{
 
 	@Autowired
 	private ResturantDao resturantDao;
@@ -19,19 +20,19 @@ public class ResturantServiceImpl implements ResturantService{
 	private ItemDao itemDao;
 	
 	@Override
-	public Resturant addResturant(Resturant res) {
+	public Restaurant addResturant(Restaurant res) {
 		// TODO Auto-generated method stub
 		return resturantDao.save(res);
 	}
 	@Override
-	public Resturant updateResturant(Resturant res) {
+	public Restaurant updateResturant(Restaurant res) {
 		// TODO Auto-generated method stub
 		
-				Optional<Resturant> optR = resturantDao.findById(res.getResturantId());
+				Optional<Restaurant> optR = resturantDao.findById(res.getRestaurantId());
 				
 				if(optR.isPresent()) {
 					
-					Resturant existingResturant= optR.get();
+					Restaurant existingResturant= optR.get();
 					
 					return resturantDao.save(res);
 				}
@@ -39,12 +40,12 @@ public class ResturantServiceImpl implements ResturantService{
 	}
 
 	@Override
-	public Resturant removeResturant(Integer res) {
-		Optional<Resturant> optR = resturantDao.findById(res);
+	public Restaurant removeResturant(Integer res) {
+		Optional<Restaurant> optR = resturantDao.findById(res);
 		
 		if(optR.isPresent()) {
 			
-			Resturant existingResturant= optR.get();
+			Restaurant existingResturant= optR.get();
 			
 			
 			resturantDao.delete(existingResturant);
@@ -63,30 +64,28 @@ public class ResturantServiceImpl implements ResturantService{
 //			return rdao.save(res);
 //		}
 
-		
-
 	@Override
-	public Resturant viewResturantByResturantId(Integer res) {
-   Optional<Resturant> optR = resturantDao.findById(res);
+	public Restaurant viewResturantByResturantId(Integer res) {
+   Optional<Restaurant> optR = resturantDao.findById(res);
 		
 		if(optR.isPresent()) {
 			
-			Resturant existingResturant= optR.get();
+			Restaurant existingResturant= optR.get();
 			
 		    return existingResturant;
 					
 		}
-		return null;
+		throw new ResturantNotFoundException("Resturant not available with provided ResturantId");
 	}
 
 	@Override
-	public List<Resturant> viewNearByResturant(String location) {
+	public List<Restaurant> viewNearByResturant(String location) {
 		
 		return null;
 	}
 
 	@Override
-	public List<Resturant> viewResturantByItemName(String name) {
+	public List<Restaurant> viewResturantByItemName(String name) {
 		
 		return null;
 	}

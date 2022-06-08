@@ -1,13 +1,13 @@
 package com.foodApp.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import com.foodApp.model.Resturant;
+import com.foodApp.model.Restaurant;
+
 
 @Repository
-public interface ResturantDao extends JpaRepository<Resturant, Integer>{
+public interface ResturantDao extends JpaRepository<Restaurant, Integer>{
 	
-	public Resturant findByResturantName(String Name);
+	//public Restaurant findByResturantName(String Name);
 }
 
  

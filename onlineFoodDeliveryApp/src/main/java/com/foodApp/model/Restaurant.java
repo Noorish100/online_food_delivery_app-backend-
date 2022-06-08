@@ -1,5 +1,6 @@
 package com.foodApp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,18 +22,18 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Item{
+public class Restaurant {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer itemId;
-	private String itemName;
-	private Integer quantity;
-	private Double cost;
+	private Integer restaurantId;
+	private String restaurantName;
+	private String managerName;
+	private String contactNo;
 	
-
-	@ManyToMany(targetEntity = Restaurant.class,cascade = CascadeType.ALL)
-	@JoinColumn(name="itemId")
-	private List<Restaurant> restaurants;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Address address;
 	
-
+	@ManyToMany(targetEntity = Item.class,cascade = CascadeType.ALL)
+	@JoinColumn(name="restaurantId")
+	private List<Item> item = new ArrayList<>();
 }

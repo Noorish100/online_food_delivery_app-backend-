@@ -1,17 +1,13 @@
 package com.foodApp.service;
+
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
-
 import com.foodApp.Exception.ItemException;
 import com.foodApp.model.Item;
-import com.foodApp.model.Resturant;
+import com.foodApp.model.Restaurant;
 import com.foodApp.repository.ItemDao;
 import com.foodApp.repository.ResturantDao;
-
-
 
 @Service
 public class ItemServiceImpl implements ItemService{
@@ -76,7 +72,7 @@ java.util.Optional<Item> optI = itemDao.findById(i);
 	}
 
 	@Override
-	public List<Item> viewAllItemResturant(Resturant res) {
+	public List<Item> viewAllItemResturant(Restaurant res) {
 		List<Item> items = itemDao.findAll();
 		
 		if(items.size()==0) {
@@ -88,14 +84,15 @@ java.util.Optional<Item> optI = itemDao.findById(i);
 	@Override
 	public List<Item> viewAllItemByName(String name) {
 		
-		Resturant n =  resturantDao.findByResturantName(name);
+//		Restaurant n =  resturantDao.findByResturantName(name);
+//		
+//		if(n!= null) {
+//			
+//			return n.getItemlist();
+//		}
+//		throw new ItemException("Invalid item Details..");
 		
-		if(n!= null) {
-			
-			return n.getItemlist();
-		}
-		throw new ItemException("Invalid item Details..");
-		
+		return null;
 	}
 }
 	

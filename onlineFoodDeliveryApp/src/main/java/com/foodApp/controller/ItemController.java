@@ -16,15 +16,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.foodApp.model.Item;
-import com.foodApp.model.Resturant;
-import com.foodApp.service.ItemService;
 import com.foodApp.service.ItemServiceImpl;
 
 @RestController
 public class ItemController{
 		
 	@Autowired
-	private ItemService iSer;
+	private ItemServiceImpl iSer;
 	
 	@PostMapping("/Item")
 	public Item saveItem(@Valid @RequestBody Item item) throws NotFoundException {
@@ -48,7 +46,6 @@ public class ItemController{
 		
 		return iSer.removeItem(itm);
 	}
-		
 	
 	@GetMapping("/Item/{itemId}")
 	public Item getItemByItemId(@PathVariable("itemId") Integer itm) throws NotFoundException {

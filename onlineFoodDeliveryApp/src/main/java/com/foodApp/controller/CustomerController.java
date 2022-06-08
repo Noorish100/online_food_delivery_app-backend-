@@ -38,7 +38,6 @@ public class CustomerController {
 	public Customer viewCustomerHandler(@PathVariable("customerId") Integer customerId) {
 		
 		return cService.viewCustomer(customerId);
-		
 	}
 	
 	@PutMapping("/customer")
@@ -47,7 +46,5 @@ public class CustomerController {
 		Customer updatedCustomer = cService.updateCustomer(customer);
 		
 		return new ResponseEntity<Customer>(updatedCustomer,HttpStatus.ACCEPTED);
-		
-		
 	}
 }

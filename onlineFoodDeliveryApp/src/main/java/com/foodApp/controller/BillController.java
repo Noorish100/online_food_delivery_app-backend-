@@ -1,13 +1,11 @@
 
-    package com.foodApp.controller;
-
-import com.foodApp.model.Bills;
+package com.foodApp.controller;
+import com.foodApp.model.Bill;
 import com.foodApp.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,22 +14,21 @@ import java.util.List;
         @Autowired
         private BillService billService;
         @PostMapping("/saveBill")
-        public ResponseEntity<Bills> saveBill(@RequestBody Bills bills){
+        public ResponseEntity<Bill> saveBill(@RequestBody Bill bills){
 
-            return new ResponseEntity<Bills>(billService.SaveBill(bills), HttpStatus.CREATED);
-
+            return new ResponseEntity<Bill>(billService.SaveBill(bills), HttpStatus.CREATED);
         }
         @PutMapping("/updateBills")
-        public ResponseEntity<Bills> UpdateBill(@RequestBody Bills bills){
-            return new ResponseEntity<Bills>(billService.UpdateBill(bills),HttpStatus.ACCEPTED);
+        public ResponseEntity<Bill> UpdateBill(@RequestBody Bill bills){
+            return new ResponseEntity<Bill>(billService.UpdateBill(bills),HttpStatus.ACCEPTED);
         }
         @PutMapping("/removeBill")
-        public ResponseEntity<Bills> deleteBill(Bills bills){
-            return  new ResponseEntity<Bills>(billService.removeBill(bills),HttpStatus.OK);
+        public ResponseEntity<Bill> deleteBill(Bill bill){
+            return  new ResponseEntity<Bill>(billService.removeBill(bill),HttpStatus.OK);
         }
         @PutMapping("findbetweendates/{sDate}/{eDate}")
-        public ResponseEntity<List<Bills>> billsbetweendates(@PathVariable LocalDate sDate,@PathVariable LocalDate eDate ){
-            return new ResponseEntity<List<Bills>>(billService.billBetweenDate(sDate,eDate),HttpStatus.FOUND);
+        public ResponseEntity<List<Bill>> billsbetweendates(@PathVariable LocalDate sDate,@PathVariable LocalDate eDate ){
+            return new ResponseEntity<List<Bill>>(billService.billBetweenDate(sDate,eDate),HttpStatus.FOUND);
         }
     }
 
