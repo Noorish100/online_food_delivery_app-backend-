@@ -1,0 +1,5 @@
+package com.masai.UserLogin.repository;
+
+public interface CurrentUserSessionDAO {
+
+}

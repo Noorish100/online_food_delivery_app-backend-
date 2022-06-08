@@ -23,6 +23,18 @@ public class GlobalExceptionHandler {
 //		
 //	}
 	
+
+	@ExceptionHandler(CustomerException.class)
+	public ResponseEntity<MyErrorMessage> customerExpHandler(CustomerException ie,WebRequest wr)  {
+		System.out.println("Inside customer exception handler");
+		
+		MyErrorMessage err = new MyErrorMessage(LocalDateTime.now(), ie.getMessage(), wr.getDescription(false));
+		
+		
+	
+	 return new ResponseEntity<MyErrorMessage>(err, HttpStatus.BAD_REQUEST);		
+		
+	}
 	//to handle Not found exception
 	@ExceptionHandler(NoHandlerFoundException.class)
 	public ResponseEntity<MyErrorMessage> wrongUrl(NoHandlerFoundException nhf, WebRequest req){
@@ -73,6 +85,14 @@ public class GlobalExceptionHandler {
 		
 		return new ResponseEntity<MyErrorMessage>(message,HttpStatus.BAD_REQUEST);
 		
+	}
+	@ExceptionHandler(BillNotFoundException.class)
+	public ResponseEntity<MyErrorMessage> handleDataNotFountException(BillNotFoundException bfe,WebRequest req){
+
+		MyErrorMessage message = new MyErrorMessage(LocalDateTime.now(),bfe.getMessage(),req.getDescription(false));
+
+		return new ResponseEntity<MyErrorMessage>(message,HttpStatus.BAD_REQUEST);
+
 	}
 	
 

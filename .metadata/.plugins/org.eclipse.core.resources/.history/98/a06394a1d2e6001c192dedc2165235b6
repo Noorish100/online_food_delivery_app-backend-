@@ -1,0 +1,39 @@
+package com.masai.UserLogin.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.masai.UserLogin.exception.LoginException;
+import com.masai.UserLogin.model.LoginData;
+import com.masai.UserLogin.model.SignUp;
+import com.masai.UserLogin.repository.CurrentUserSessionDAO;
+import com.masai.UserLogin.repository.SignUpDAO;
+import com.masai.exception.CustomerException;
+
+public class LoginServiceImpl implements LoginService {
+
+	@Autowired
+	private SignUpDAO signUpDAO;
+	
+	@Autowired
+	private CurrentUserSessionDAO currentUserSessionDAO;
+	@Override
+	public String logInAccount(LoginData loginData) {
+		
+		Optional<SignUp> opt = signUpDAO.findByUserName(loginData.getUserName());
+		
+		if(!opt.isPresent())
+		{
+			throw new LoginException("Invalid Login UserName");
+		}
+		
+	}
+
+	@Override
+	public String logOutFromAccount(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

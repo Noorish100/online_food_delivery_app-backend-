@@ -28,16 +28,29 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Cart {
-	
+
 	@Id
 	private Integer cart_Id;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
+<<<<<<< HEAD
 	private Customer customer;
 	
+=======
+//	private User user;
+
+>>>>>>> 61507e18291983bfa005ed9e3437162dbfe7653e
 	private Integer resturant_id;
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
+<<<<<<< HEAD
 	private List<Item> items;
+=======
+	private List<Item> liItem;
+
+
+
+
+>>>>>>> 61507e18291983bfa005ed9e3437162dbfe7653e
 }

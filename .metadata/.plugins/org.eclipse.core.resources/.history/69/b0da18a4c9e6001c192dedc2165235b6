@@ -1,0 +1,10 @@
+package com.masai.UserLogin.service;
+
+import com.masai.UserLogin.model.LoginData;
+
+public interface LoginInService {
+	
+	public String logInAccount(LoginData loginData);
+	public String logOutFromAccount(String key);
+
+}

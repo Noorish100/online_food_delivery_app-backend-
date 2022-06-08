@@ -1,4 +1,4 @@
-package com.foodApp.service;
+/*package com.foodApp.service;
 
 import java.util.List;
 
@@ -50,8 +50,14 @@ public class CartServiceImpl implements CartService{
 		return null;
 	}
 
+<<<<<<< HEAD
 	@Override
 	public Cart clearCart(Cart cart) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+=======
+}
+
+ */
+>>>>>>> 61507e18291983bfa005ed9e3437162dbfe7653e

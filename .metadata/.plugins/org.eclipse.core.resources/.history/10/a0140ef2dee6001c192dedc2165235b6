@@ -1,0 +1,32 @@
+package com.masai.UserLogin.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.masai.UserLogin.model.LoginData;
+import com.masai.UserLogin.model.SignUp;
+import com.masai.UserLogin.service.SignUpService;
+
+@RestController
+public class SignUpController {
+	
+	@Autowired
+	private SignUpService signUpService;
+	
+	@PostMapping("/signUp")
+	public SignUp createNewSignUpHandler(@RequestBody SignUp newSignUp) {
+		
+		return signUpService.createNewSignUp(newSignUp);
+	}
+	
+	@PatchMapping("/updateSignUp")
+	public SignUp signUpServiceHandler(@RequestParam(required=false) String key)
+	{
+		return signUpService.updateSignUpDetails(key);
+	}
+
+}
