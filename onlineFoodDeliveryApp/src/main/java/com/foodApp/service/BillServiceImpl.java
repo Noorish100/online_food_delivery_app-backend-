@@ -1,7 +1,9 @@
 package com.foodApp.service;
 
+import com.foodApp.Exception.BillNotFoundException;
 import com.foodApp.model.Bills;
 import com.foodApp.repository.BillDao;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,16 +28,18 @@ public class BillServiceImpl implements BillService {
         if (opt.isPresent()) {
             billDao.save(bills);
         }
+        else throw new BillNotFoundException("Bill not found");
         return bills;
     }
 
     @Override
     public Bills removeBill(Bills bills) {
-        Optional<Bills> opt = billDao.findById(bills.getBillId());
-        if(opt.isPresent()){
-            billDao.delete(bills);
-        }
-        return bills;
+
+        Bills bls=billDao.findById(bills.getBillId()).orElseThrow(()-> new BillNotFoundException("Bill not Found"));
+        billDao.delete(bills);
+        return bls;
+
+
     }
 
     @Override

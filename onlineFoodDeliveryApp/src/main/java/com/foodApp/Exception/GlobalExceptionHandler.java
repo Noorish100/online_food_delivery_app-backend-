@@ -86,6 +86,14 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<MyErrorMessage>(message,HttpStatus.BAD_REQUEST);
 		
 	}
+	@ExceptionHandler(BillNotFoundException.class)
+	public ResponseEntity<MyErrorMessage> handleDataNotFountException(BillNotFoundException bfe,WebRequest req){
+
+		MyErrorMessage message = new MyErrorMessage(LocalDateTime.now(),bfe.getMessage(),req.getDescription(false));
+
+		return new ResponseEntity<MyErrorMessage>(message,HttpStatus.BAD_REQUEST);
+
+	}
 	
 
 }
