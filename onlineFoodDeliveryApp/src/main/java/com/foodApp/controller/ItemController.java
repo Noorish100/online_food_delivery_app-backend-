@@ -62,8 +62,5 @@ public class ItemController{
 	
 		return new ResponseEntity<List<Item>>(items, HttpStatus.OK);
 	}
-	
-	
-	
 }
 
