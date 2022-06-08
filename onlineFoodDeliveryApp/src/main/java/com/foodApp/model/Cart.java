@@ -21,20 +21,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cart {
-	
+
 	@Id
 	private Integer cart_Id;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
-	private User user;
-	
+//	private User user;
+
 	private Integer resturant_id;
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Item> liItem;
-	
 
-	
+
+
 
 }

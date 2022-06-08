@@ -51,6 +51,6 @@ public class Address {
 	private String pinCode;
 	
 	@JsonIgnore
-	@OneToMany(cascade =  CascadeType.ALL )
+	@OneToOne(cascade =  CascadeType.ALL )
 	private Resturant rest;
 }
