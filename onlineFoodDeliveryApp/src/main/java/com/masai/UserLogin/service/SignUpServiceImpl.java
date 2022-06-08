@@ -42,8 +42,8 @@ public class SignUpServiceImpl implements SignUpService {
 			throw new LoginException("No User Found....Try To login first!");
 		}
 		
-		signUpDAO.save(signUpDetails);
-		return signUpDetails;
+		signUpDAO.save(signUp);
+		return signUp;
 	}
 
 }

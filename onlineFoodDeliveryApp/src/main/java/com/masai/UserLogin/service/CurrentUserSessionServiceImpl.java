@@ -53,8 +53,9 @@ public class CurrentUserSessionServiceImpl implements CurrentUserSessionService 
 			throw new LoginException("UnAuthorized!!!");
 		}
 		Integer SignUpUserId = currentUser.get().getUserId();
+		System.out.println(SignUpUserId );
 		
-		return signUpDAO.getReferenceById(SignUpUserId);
+		return (signUpDAO.findById(SignUpUserId)).get();
 	}
 
 }
