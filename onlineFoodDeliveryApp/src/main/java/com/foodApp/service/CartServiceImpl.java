@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.foodApp.Exception.ItemUnavailable;
+import com.foodApp.Exception.NoItemFoundInFoodcart;
 import com.foodApp.model.Customer;
 import com.foodApp.model.FoodCart;
 import com.foodApp.model.Item;
@@ -31,8 +32,7 @@ public class CartServiceImpl implements CartService{
 	@Autowired
 	private CustomerDAO customerDAO;
 	
-	@Autowired
-	private Customer customer;
+	
 
 	@Override
 	public FoodCart addItemToCart(Integer id, String item) throws ItemUnavailable {
@@ -45,23 +45,39 @@ public class CartServiceImpl implements CartService{
 			Item i = itemDao.findByItemName(item);
 			
 			if(i != null) {
-			  return cartDao.save(customer.);
+			  
+				FoodCart c=new FoodCart();
+				
+				c.getItems().add(i);
+				
+				
 			}
 		}		
 		
-		return null;
+	 throw new NoItemFoundInFoodcart("not found");
 	}
 
-//	@Override
-//	public FoodCart saveCart(FoodCart cart) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public FoodCart saveCart(FoodCart cart) {
+		
+		if(cart!=null)
+		return cartDao.save(cart);
+		throw new ItemUnavailable("cant save");
+	}
 
 	@Override
-	public Restaurant viewCartByCartId(Integer cartId) {
-		// TODO Auto-generated method stub
-		return null;
+	public FoodCart viewCartByCartId(Integer cartId) {
+	   Optional<FoodCart> f=cartDao.findById(cartId);
+	   if(f.isPresent()) {
+       	FoodCart existingcart= f.get();
+       	
+       	return existingcart;
+       	
+       	
+	   }
+		 throw new NoItemFoundInFoodcart("not found");
+
+		
 	}
 
 	@Override

@@ -11,9 +11,9 @@ public interface CartService{
 //	public List<CartItem> getCartItems(String token);
 //	public Cart removeItemFromCart(CartDto cartDto,String token) throws ItemUnavailable;
 
-//	public FoodCart saveCart(FoodCart cart)throws ItemUnavailable;
+	public FoodCart saveCart(FoodCart cart)throws ItemUnavailable;
 
-	public Restaurant viewCartByCartId(Integer cartId)throws ItemUnavailable;
+	public FoodCart viewCartByCartId(Integer cartId)throws ItemUnavailable;
 
 	public Restaurant removeCart(Integer cartId)throws ItemUnavailable;
 
