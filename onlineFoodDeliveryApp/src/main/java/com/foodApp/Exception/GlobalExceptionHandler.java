@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import com.foodApp.UserLogin.exception.LoginException;
+
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	
@@ -22,7 +25,18 @@ public class GlobalExceptionHandler {
 //		return new ResponseEntity<MyErrorMessage>(message,HttpStatus.BAD_REQUEST);
 //		
 //	}
+
 	
+	//	Userlogin.exception's LoginException Handler
+	@ExceptionHandler(LoginException.class)
+	public ResponseEntity<MyErrorMessage> loginExpHandler(LoginException ie,WebRequest wr)  {
+		
+		System.out.println("Inside login exception handler");
+		MyErrorMessage err = new MyErrorMessage(LocalDateTime.now(), ie.getMessage(), wr.getDescription(false));
+		return new ResponseEntity<MyErrorMessage>(err, HttpStatus.BAD_REQUEST);		
+		
+	}
+
 
 	@ExceptionHandler(CustomerException.class)
 	public ResponseEntity<MyErrorMessage> customerExpHandler(CustomerException ie,WebRequest wr)  {
