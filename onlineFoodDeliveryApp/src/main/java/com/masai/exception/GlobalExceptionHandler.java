@@ -9,13 +9,24 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import com.masai.UserLogin.exception.LoginException;
+
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+//	Userlogin.exception's LoginException Handler
+	@ExceptionHandler(LoginException.class)
+	public ResponseEntity<MyErrorDetails> loginExpHandler(LoginException ie,WebRequest wr)  {
+		
+		System.out.println("Inside login exception handler");
+		MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), ie.getMessage(), wr.getDescription(false));
+		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);		
+		
+	}
 	
 	@ExceptionHandler(CustomerException.class)
-	public ResponseEntity<MyErrorDetails> myExpHandler(CustomerException ie,WebRequest wr)  {
-		System.out.println("inside myHandler method...RNE");
+	public ResponseEntity<MyErrorDetails> customerExpHandler(CustomerException ie,WebRequest wr)  {
+		System.out.println("Inside customer exception handler");
 		
 		MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), ie.getMessage(), wr.getDescription(false));
 		

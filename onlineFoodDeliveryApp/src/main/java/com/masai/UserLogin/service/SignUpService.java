@@ -1,0 +1,12 @@
+package com.masai.UserLogin.service;
+
+import com.masai.UserLogin.exception.LoginException;
+import com.masai.UserLogin.model.SignUp;
+
+public interface SignUpService {
+	
+	public SignUp createNewSignUp(SignUp signUp) throws LoginException;;
+	
+	public SignUp updateSignUpDetails(SignUp signUp,String key) throws LoginException;;
+
+}
