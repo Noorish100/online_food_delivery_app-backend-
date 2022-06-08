@@ -1,20 +1,22 @@
 package com.foodApp.service;
 
-import java.util.List;
-
+import javax.validation.Valid;
+import com.foodApp.Exception.ItemUnavailable;
 import com.foodApp.model.Cart;
-import com.foodApp.model.Item;
+import com.foodApp.model.Resturant;
 
 public interface CartService{	
 	
-	public Cart addItemToCart(Cart cart, Item item);
-	
-	public Cart increaseQuantity(Cart cart, Item item, Integer quantity);
-	
-	public Cart reduceQuantity(Cart cart, Item item, Integer quantity);
-	
-	public Cart removeItem(Cart cart, Item item);
-	
-	public Cart clearCart(Cart cart);
+	public Cart addItemToCart(Integer customerId, String itemName) throws ItemUnavailable;
+//	public List<CartItem> getCartItems(String token);
+//	public Cart removeItemFromCart(CartDto cartDto,String token) throws ItemUnavailable;
+
+	public Cart saveCart(Cart cart);
+
+	public Resturant viewCartByCartId(Integer cartId);
+
+	public Resturant removeCart(Integer cartId);
+
+	public Cart updateCart(@Valid Cart cart);
 }
 

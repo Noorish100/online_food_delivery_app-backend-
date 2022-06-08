@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -27,7 +28,6 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Item{
 	
 	@Id
@@ -46,10 +46,15 @@ public class Item{
 	
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "resturantId")
 	private Resturant res;
 
-	@JsonIgnore
-	@OneToMany
-	@JoinColumn(name = "resturantId")
-	private List<Resturant> resturant;
+	@ManyToOne
+	@JoinColumn(name = "cartId")
+   // @JsonBackReference
+    private Cart cart;
+//	@JsonIgnore
+//	@OneToMany
+//	@JoinColumn(name = "resturantId")
+//	private List<Resturant> resturant;
 }

@@ -31,20 +31,8 @@ public class Address {
 	@NotNull(message = "BuildingName cannot be null")
 	private String buildingName;
 	
-	@NotNull(message = "StreetNo cannot be null")
-	private String streetNo;
-	
-	@NotNull(message = "Area cannot be null")
-	private String area;
-	
 	@NotNull(message = "City cannot be null")
 	private String city;
-	
-	@NotNull(message = "State cannot be null")
-	private String State;
-	
-	@NotNull(message = "Country cannot be null")
-	private String country;
 	
 	@NotNull(message = "PinCode cannot be null")
 	@Pattern(regexp="[0-9]{6}", message = "Only Valid for 6 digit indian pincode")

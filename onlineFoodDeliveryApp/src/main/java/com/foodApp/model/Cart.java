@@ -1,5 +1,6 @@
 package com.foodApp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,6 +17,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,27 +32,18 @@ import lombok.ToString;
 public class Cart {
 
 	@Id
-	private Integer cart_Id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer cartId;
 
+	private Double cartTotal;
+	
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "customerId")
 	@JsonIgnore
-<<<<<<< HEAD
 	private Customer customer;
 	
-=======
-//	private User user;
-
->>>>>>> 61507e18291983bfa005ed9e3437162dbfe7653e
-	private Integer resturant_id;
-
-	@OneToMany(cascade = CascadeType.ALL)
-<<<<<<< HEAD
-	private List<Item> items;
-=======
-	private List<Item> liItem;
-
-
-
-
->>>>>>> 61507e18291983bfa005ed9e3437162dbfe7653e
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
+    @JsonManagedReference
+	private List<Item> items = new ArrayList<>();
+//	private List<CartItem> cartItems = new ArrayList<>();
 }

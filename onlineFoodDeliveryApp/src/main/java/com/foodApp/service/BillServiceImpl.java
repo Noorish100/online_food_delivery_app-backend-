@@ -18,8 +18,6 @@ public class BillServiceImpl implements BillService {
     @Override
     public Bills SaveBill(Bills bills) {
         return billDao.save(bills);
-
-
     }
 
     @Override
@@ -38,13 +36,11 @@ public class BillServiceImpl implements BillService {
         Bills bls=billDao.findById(bills.getBillId()).orElseThrow(()-> new BillNotFoundException("Bill not Found"));
         billDao.delete(bills);
         return bls;
-
-
     }
 
     @Override
     public List<Bills> billBetweenDate(LocalDate startDate, LocalDate EndDate) {
-        List<Bills> tb =billDao.findTotalBillsByBillDateBetween(startDate,EndDate);
+        List<Bills> tb =billDao.findByBillDate(startDate,EndDate);
         return tb;
     }
 

@@ -14,7 +14,7 @@ import java.util.List;
     @RestController
     public class BillController {
         @Autowired
-        BillService billService;
+        private BillService billService;
         @PostMapping("/saveBill")
         public ResponseEntity<Bills> saveBill(@RequestBody Bills bills){
 

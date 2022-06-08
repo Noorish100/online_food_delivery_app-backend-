@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
 @Repository
-public interface BillDao extends JpaRepository<Bills,Integer> {
-    public List<Bills> findTotalBillsByBillDateBetween(LocalDate startDate, LocalDate endDate);
+public interface BillDao extends JpaRepository<Bills,Integer>{
+	
+    public List<Bills> findByBillDate(LocalDate startDate, LocalDate endDate);
 }

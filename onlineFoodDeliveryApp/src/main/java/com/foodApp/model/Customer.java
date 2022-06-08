@@ -1,10 +1,5 @@
 package com.foodApp.model;
 
-<<<<<<< HEAD
-public class Customer {
-
-}
-=======
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,13 +11,14 @@ import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
-
-public class Customer {
-	
-	
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Customer {	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer customerId;
@@ -31,14 +27,15 @@ public class Customer {
 	private int age;
 	private String gender;
 	private String mobileNumber;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="addId")
-	private Address address;
-	
 	private String email;
 	
-
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="addressId")
+	private Address address;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="cartId")
+	private Cart cart;
 }
 
->>>>>>> 61507e18291983bfa005ed9e3437162dbfe7653e
+

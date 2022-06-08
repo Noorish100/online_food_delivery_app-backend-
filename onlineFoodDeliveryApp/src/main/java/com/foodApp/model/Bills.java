@@ -24,5 +24,6 @@ public class Bills {
     private Integer BillCount;
     private Integer totalCost;
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "orderId")
     private Orders orders;
 }
