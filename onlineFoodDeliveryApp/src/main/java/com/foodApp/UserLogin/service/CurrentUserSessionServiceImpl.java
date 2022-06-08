@@ -54,7 +54,9 @@ public class CurrentUserSessionServiceImpl implements CurrentUserSessionService 
 		}
 		Integer SignUpUserId = currentUser.get().getUserId();
 		
-		return signUpDAO.getReferenceById(SignUpUserId);
+		System.out.println(SignUpUserId );
+		
+		return (signUpDAO.findById(SignUpUserId)).get();
 	}
 
 }
