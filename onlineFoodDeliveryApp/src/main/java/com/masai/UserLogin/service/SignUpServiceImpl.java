@@ -24,13 +24,12 @@ public class SignUpServiceImpl implements SignUpService {
 	public SignUp createNewSignUp(SignUp newSignUp) {
 		
 		Optional<SignUp> opt = signUpDAO.findByUserName(newSignUp.getUserName());
-		
 		if(opt.isPresent())
 		{
 			throw new CustomerException("User Already Exist!");
 		}
 		
-		return signUpDAO.save(opt.get());
+		return signUpDAO.save(newSignUp);
 	}
 
 	@Override
