@@ -5,15 +5,16 @@ import java.util.List;
 import com.foodApp.model.Cart;
 import com.foodApp.model.Item;
 
-public interface CartService{
-	public List<Item> getCartId(Integer cart_Id, Integer user_Id );
+public interface CartService{	
 	
-	public Cart getCartById(Integer cartId);
+	public Cart addItemToCart(Cart cart, Item item);
 	
-	public Item getItembyId(Integer restId, Integer itemId);
+	public Cart increaseQuantity(Cart cart, Item item, Integer quantity);
 	
-	public Cart storeItemwithUser(Integer userId, Integer cartId, Integer itemId , Integer quantity);
-    
-	public String delivery(Integer cartId);
+	public Cart reduceQuantity(Cart cart, Item item, Integer quantity);
+	
+	public Cart removeItem(Cart cart, Item item);
+	
+	public Cart clearCart(Cart cart);
 }
 
