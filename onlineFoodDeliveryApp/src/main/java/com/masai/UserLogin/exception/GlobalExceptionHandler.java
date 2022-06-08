@@ -1,4 +1,4 @@
-package com.masai.exception;
+package com.masai.UserLogin.exception;
 
 import java.time.LocalDateTime;
 
@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import com.masai.UserLogin.exception.LoginException;
+import com.masai.exception.CustomerException;
+
 
 
 @ControllerAdvice
@@ -23,7 +24,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);		
 		
 	}
-	
+
 	@ExceptionHandler(CustomerException.class)
 	public ResponseEntity<MyErrorDetails> customerExpHandler(CustomerException ie,WebRequest wr)  {
 		System.out.println("Inside customer exception handler");
@@ -34,10 +35,8 @@ public class GlobalExceptionHandler {
 	
 	 return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);		
 		
-	}
-	
-	
-	
+	}	
+
 	@ExceptionHandler(NoHandlerFoundException.class)
 	public ResponseEntity<MyErrorDetails> mynotFoundHandler(NoHandlerFoundException nfe,WebRequest req)  {
 		System.out.println("inside myHandler method...NHFE");

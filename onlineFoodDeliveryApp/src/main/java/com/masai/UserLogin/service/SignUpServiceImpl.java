@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.masai.UserLogin.exception.LoginException;
 import com.masai.UserLogin.model.SignUp;
 import com.masai.UserLogin.repository.SignUpDAO;
+import com.masai.exception.CustomerException;
 
 @Service
 public class SignUpServiceImpl implements SignUpService {
@@ -24,9 +25,9 @@ public class SignUpServiceImpl implements SignUpService {
 		
 		Optional<SignUp> opt = signUpDAO.findByUserName(newSignUp.getUserName());
 		
-		if(!opt.isPresent())
+		if(opt.isPresent())
 		{
-			throw new LoginException("User Already Exist!");
+			throw new CustomerException("User Already Exist!");
 		}
 		
 		return signUpDAO.save(opt.get());
