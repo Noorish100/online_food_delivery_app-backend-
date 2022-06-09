@@ -15,8 +15,6 @@ import java.util.Optional;
 public class OrderServideIml implements OrderService{
     @Autowired
     OrderDao orderDao;
-    @Autowired
-    CustomerDAO customerDAO;
 
     @Override
     public OrderDetails addOrders(OrderDetails orderDetails) {
@@ -55,10 +53,5 @@ public class OrderServideIml implements OrderService{
 
 
 
-    @Override
-    public List<OrderDetails> viewOrdersByCustomerId(Integer CustomersId) {
-       Customer customer= customerDAO.findById(CustomersId).orElseThrow(()->new BillNotFoundException("Customer Not found"));
 
-        return null;
-    }
 }

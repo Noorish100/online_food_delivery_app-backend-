@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.foodApp.Exception.NotFoundException;
+import com.foodApp.UserLogin.service.CurrentUserSessionService;
 import com.foodApp.model.Restaurant;
 import com.foodApp.service.RestaurantService;
 
@@ -23,6 +27,9 @@ public class ResturantController{
 	@Autowired
 	private RestaurantService resSer;
 	
+	 @Autowired
+ 	 private CurrentUserSessionService  currentUserSessionService;
+	
 	@PostMapping("/resturant")
 	public ResponseEntity<Restaurant> saveResturant(@Valid @RequestBody Restaurant res) {
 		
@@ -31,11 +38,18 @@ public class ResturantController{
 		return new ResponseEntity<Restaurant>(r,HttpStatus.ACCEPTED);
 	}
 	
+	//-------------------------------Login authentication added------------------------------------	j
 	@GetMapping("/resturantId/{resturantId}")
-	public ResponseEntity<Restaurant> getStudentByresturantId(@PathVariable ("resturantId") Integer rId){
+	public ResponseEntity<Restaurant> getStudentByresturantId(@PathVariable ("resturantId") Integer rId,@RequestParam String key){
 		
-		Restaurant r=resSer.viewResturantByResturantId(rId);	
-		return new ResponseEntity<Restaurant>(r,HttpStatus.ACCEPTED);
+		Integer sessionId = currentUserSessionService.getCurrentUserSessionId(key);
+    	
+    	if(sessionId != null)
+    		{	Restaurant r=resSer.viewResturantByResturantId(rId);	
+    			return new ResponseEntity<Restaurant>(r,HttpStatus.ACCEPTED);
+    		}
+    	else
+    		throw new NotFoundException();
 	}
 	
 	

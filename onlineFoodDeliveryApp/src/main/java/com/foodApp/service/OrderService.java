@@ -9,6 +9,6 @@ public interface OrderService {
     public OrderDetails updateOrders(OrderDetails orderDetails);
     public OrderDetails removeOrder(OrderDetails orderDetails);
     public OrderDetails viewOrderById(Integer id);
-    public List<OrderDetails> viewOrdersByCustomerId(Integer CustomerId);
+//    public List<OrderDetails> viewOrdersByCustomerId(Integer CustomerId);
 
 }

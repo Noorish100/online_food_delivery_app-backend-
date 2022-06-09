@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.foodApp.Exception.NotFoundException;
+import com.foodApp.UserLogin.service.CurrentUserSessionService;
 import com.foodApp.model.FoodCart;
 import com.foodApp.model.Restaurant;
 import com.foodApp.service.CartService;
@@ -20,6 +22,8 @@ public class CartController{
 	
 	@Autowired
 	private CartService cartService;
+	@Autowired
+	private CurrentUserSessionService  currentUserSessionService;
 	
 	@PostMapping("/cart/{cartId}/{itemId}")
 	public ResponseEntity<FoodCart> saveCartDetails(@PathVariable ("cartId") Integer cartid, @PathVariable ("itemId") Integer itemid)
@@ -29,20 +33,28 @@ public class CartController{
 		return new ResponseEntity<FoodCart>(savedCart,HttpStatus.CREATED);
 	}
 	
+//-------------------------------Login authentication added------------------------------------	j
 	@PostMapping("/cart")
-	public ResponseEntity<FoodCart> saveCartDetails(@RequestBody FoodCart fc)
+	public ResponseEntity<FoodCart> saveCartDetails(@RequestParam String key,@RequestBody FoodCart fc)
 	{
-	            if(fc!=null) {
+				Integer sessionId = currentUserSessionService.getCurrentUserSessionId(key);
+				
+				if(fc!=null && sessionId != null) {
 	            FoodCart f= cartService.saveCart(fc);
 	            	return new ResponseEntity<FoodCart>(f,HttpStatus.CREATED);
 	            }
 	            throw new NotFoundException();
 	}
-	
+	//-------------------------------Login authentication added------------------------------------	j	
 	@GetMapping("/cartById/{cartId}")
-	public FoodCart getCartByCartId(@PathVariable ("cartId") Integer cartId){
+	public FoodCart getCartByCartId(@PathVariable ("cartId") Integer cartId,@RequestParam String key){
+		
+		Integer sessionId = currentUserSessionService.getCurrentUserSessionId(key);
+		if(sessionId != null)
+			return cartService.viewCartByCartId(cartId);
+		else
+			 throw new NotFoundException();
 			
-		return cartService.viewCartByCartId(cartId);		
 	}
 	
 	@DeleteMapping("/cart/{cartId}")

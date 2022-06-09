@@ -26,9 +26,12 @@ import java.util.List;
         public ResponseEntity<Bill> deleteBill(Bill bill){
             return  new ResponseEntity<>(billService.removeBill(bill),HttpStatus.OK);
         }
-        @PutMapping("findbetweendates/{sDate}/{eDate}")
-        public ResponseEntity<List<Bill>> billsbetweendates(@PathVariable LocalDate sDate,@PathVariable LocalDate eDate ){
-            return new ResponseEntity<>(billService.billBetweenDate(sDate,eDate),HttpStatus.FOUND);
+        @GetMapping("/getBill/{customerId}")
+        public ResponseEntity<String> getBillByCustomerId(@PathVariable ("customerId")Integer customerId){
+            return new ResponseEntity<>(billService.genrateBillByCustomerId(customerId),HttpStatus.OK);
+
         }
+
+
     }
 

@@ -8,6 +8,6 @@ public interface BillService {
     public Bill SaveBill(Bill bill);
     public Bill UpdateBill(Bill bill);
     public Bill removeBill(Bill bill);
-    public List<Bill> billBetweenDate(LocalDate startDate, LocalDate EndDate);
+    public String genrateBillByCustomerId(Integer customerId);
 //    public TotalBill viewBillByCustomerId(Integer CustomerId);
 }

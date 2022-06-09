@@ -2,7 +2,10 @@ package com.foodApp.service;
 
 import com.foodApp.Exception.BillNotFoundException;
 import com.foodApp.model.Bill;
+import com.foodApp.model.Customer;
+import com.foodApp.model.Item;
 import com.foodApp.repository.BillDao;
+import com.foodApp.repository.CustomerDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
@@ -13,6 +16,8 @@ import java.util.Optional;
 public class BillServiceImpl implements BillService {
     @Autowired
     BillDao billDao;
+    @Autowired
+    CustomerDAO customerDAO;
 
     @Override
     public Bill SaveBill(Bill bills) {
@@ -44,10 +49,16 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public List<Bill> billBetweenDate(LocalDate startDate, LocalDate EndDate) {
-        //List<Bill> tb =billDao.findByBillDate(startDate,EndDate);
-        return null;//tb;
+    public String genrateBillByCustomerId(Integer customerId) {
+        Customer customer=customerDAO.findById(customerId).orElseThrow(()-> new BillNotFoundException("Customer Not Found"));
+       List<Item> orderlist= customer.getFoodCart().getItems();
+       Double sum=0.0;
+       for(Item i:orderlist){
+          sum+= i.getCost()*i.getQuantity();
+       }
+       return "[ Bill is for "+customer.getName()+" is "+sum+" ]";
     }
+
 
 //    @Override
 //    public TotalBill viewBillByCustomerId(Integer CustomerId) {
