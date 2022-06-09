@@ -33,6 +33,4 @@ public class FoodCart {
 	@OneToMany(targetEntity = Item.class,cascade = CascadeType.ALL)
 	@JoinColumn(name="cartId", referencedColumnName = "cartId")
 	private List<Item> items;
-	
-
 }

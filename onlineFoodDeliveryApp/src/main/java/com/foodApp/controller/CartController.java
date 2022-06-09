@@ -35,7 +35,6 @@ public class CartController {
 	            FoodCart f= cartService.saveCart(fc);
 	            	return new ResponseEntity<FoodCart>(f,HttpStatus.CREATED);
 	            }
-	            
 	            throw new NotFoundException();
 	}
 	

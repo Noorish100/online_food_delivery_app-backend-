@@ -32,7 +32,6 @@ public class CartServiceImpl implements CartService{
 	@Autowired
 	private CustomerDAO customerDAO;
 	
-	
 
 	@Override
 	public FoodCart addItemToCart(Integer cartid, Integer itemid) throws ItemUnavailable {
