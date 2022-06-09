@@ -41,5 +41,7 @@ public class Customer {
 	private String email;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
+	@OneToOne(cascade = CascadeType.ALL)
+	private FoodCart foodCart;
 }
 
