@@ -16,7 +16,13 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public Bill SaveBill(Bill bills) {
-        return billDao.save(bills);
+        Optional<Bill> opt = billDao.findById(bills.getBillId());
+        if (opt.isPresent()) {
+            throw  new BillNotFoundException("Bill Already Exist");
+        }
+        else  billDao.save(bills);
+        return bills;
+
     }
 
     @Override
