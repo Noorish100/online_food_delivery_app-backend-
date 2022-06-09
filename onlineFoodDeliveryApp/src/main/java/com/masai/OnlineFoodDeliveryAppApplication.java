@@ -8,7 +8,7 @@ public class OnlineFoodDeliveryAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OnlineFoodDeliveryAppApplication.class, args);
-		System.out.println("DONE!!");
+		System.out.println("Compilation done Jagrati!!");
 	}
 
 }

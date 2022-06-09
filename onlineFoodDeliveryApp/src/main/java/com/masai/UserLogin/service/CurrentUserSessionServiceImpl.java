@@ -50,11 +50,13 @@ public class CurrentUserSessionServiceImpl implements CurrentUserSessionService 
 		Optional<CurrentUserSession> currentUser = currentUserSessionDAO.findByUuid(key);
 		if(!currentUser.isPresent())
 		{
-			throw new LoginException("UnAuthorized!!!");
+			return null;
+//			throw new LoginException("UnAuthorized!!! No User Found....Try To login first!");
 		}
 		Integer SignUpUserId = currentUser.get().getUserId();
 		System.out.println(SignUpUserId );
 		
+//		If you don't insert right userid then it will return null
 		return (signUpDAO.findById(SignUpUserId)).get();
 	}
 

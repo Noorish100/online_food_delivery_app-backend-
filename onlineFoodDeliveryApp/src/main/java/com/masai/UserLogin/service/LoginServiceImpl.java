@@ -11,6 +11,7 @@ import com.masai.UserLogin.model.CurrentUserSession;
 import com.masai.UserLogin.model.LoginData;
 import com.masai.UserLogin.model.SignUp;
 import com.masai.UserLogin.repository.CurrentUserSessionDAO;
+import com.masai.UserLogin.repository.LoginDataDAO;
 import com.masai.UserLogin.repository.SignUpDAO;
 
 @Service
@@ -24,14 +25,17 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Autowired
 	private CurrentUserSessionService getCurrentLoginUserSession;
+	
+	@Autowired
+	private LoginDataDAO loginDataDAO;
 	@Override
 	public String logInAccount(LoginData loginData) {
 		
-		Optional<SignUp> opt = signUpDAO.findByUserName(loginData.getUserName());
+		Optional<SignUp> opt = signUpDAO.findById(loginData.getUserId());
 		
 		if(!opt.isPresent())
 		{
-			throw new LoginException("Invalid Login UserName");
+			throw new LoginException("Invalid Login UserId");
 		}
 		
 		SignUp newSignUp = opt.get();
@@ -43,18 +47,19 @@ public class LoginServiceImpl implements LoginService {
 			throw new LoginException("User Already login with this UserId");
 		}
 		
-		if(newSignUp.getPassword().equals(loginData.getPassword()))
+		if((newSignUp.getUserId() == loginData.getUserId()) && (newSignUp.getPassword().equals(loginData.getPassword())))
 		{
 			String key = RandomString.getRandomNumberString();
 			
 			CurrentUserSession currentUserSession = new CurrentUserSession(newSignUp.getUserId(),key,LocalDateTime.now());
 			currentUserSessionDAO.save(currentUserSession);
+			loginDataDAO.save(loginData);
 			
 			return currentUserSession.toString();
 			
 		}
 		else
-			throw new LoginException("Invalid Password!");
+			throw new LoginException("Invalid UserName or Password!");
 			
 		
 	}
@@ -70,6 +75,11 @@ public class LoginServiceImpl implements LoginService {
 		CurrentUserSession currentUserSession = getCurrentLoginUserSession.getCurrentUserSession(key);
 		
 		currentUserSessionDAO.delete(currentUserSession);
+		
+		Optional<LoginData> loginData = loginDataDAO.findById(currentUserOptional.get().getUserId());
+		System.out.println(loginData);
+		loginDataDAO.delete(loginData.get());
+		
 		
 		return "Logged Out......";
 	}
