@@ -39,11 +39,16 @@ public class SignUpServiceImpl implements SignUpService {
 		
 		if(signUpDetails == null)
 		{
-			throw new LoginException("No User Found....Try To login first!");
+			throw new LoginException("UnAuthorized!!! No User Found....Try To login first!");
 		}
 		
-		signUpDAO.save(signUp);
-		return signUp;
+		if(signUpDetails.getUserId() == signUp.getUserId())
+			{
+			signUpDAO.save(signUp);
+			return signUp;
+			}
+		else
+			throw new LoginException("Can't change UserId!!");
 	}
 
 }

@@ -22,7 +22,7 @@ public class LoginController {
 	}
 	
 	@PatchMapping("/logout")
-	public String logOutFromAccount(@RequestParam(required=false) String key)
+	public String logOutFromAccount(@RequestParam String key)
 	{
 		return loginService.logOutFromAccount(key);
 	}

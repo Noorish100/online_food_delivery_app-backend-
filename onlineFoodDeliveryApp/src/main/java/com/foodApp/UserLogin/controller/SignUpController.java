@@ -30,7 +30,7 @@ public class SignUpController {
 	}
 	
 	@PutMapping("/updateSignUp")
-	public ResponseEntity<SignUp> updateSignUpDetailsHandler(@RequestBody SignUp signUp, @RequestParam(required=false) String key)
+	public ResponseEntity<SignUp> updateSignUpDetailsHandler(@RequestBody SignUp signUp, @RequestParam String key)
 	{
 		SignUp newUpdatedSignUp = signUpService.updateSignUpDetails(signUp,key);
 		
