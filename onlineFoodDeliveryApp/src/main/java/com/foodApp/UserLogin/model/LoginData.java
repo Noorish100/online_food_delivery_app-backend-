@@ -2,6 +2,7 @@ package com.foodApp.UserLogin.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -10,6 +11,7 @@ import lombok.Data;
 public class LoginData {
 	
 	@Id
+	@NotNull
 	private Integer userId;
 	
 	private String userName;
