@@ -16,15 +16,16 @@ import com.foodApp.model.Restaurant;
 import com.foodApp.service.CartService;
 
 @RestController
-public class CartController {
+public class CartController{
 	
 	@Autowired
 	private CartService cartService;
 	
-	@PostMapping("/cart/{customerId}/{itemName}")
-	public ResponseEntity<FoodCart> saveCartDetails(@PathVariable ("customerId") Integer customerId, @PathVariable ("itemName") String itemName)
+	@PostMapping("/cart/{cartId}/{itemId}")
+	public ResponseEntity<FoodCart> saveCartDetails(@PathVariable ("cartId") Integer cartid, @PathVariable ("itemId") Integer itemid)
 	{
-		FoodCart savedCart = cartService.addItemToCart(customerId, itemName);
+		
+		FoodCart savedCart = cartService.addItemToCart(cartid, itemid);
 		return new ResponseEntity<FoodCart>(savedCart,HttpStatus.CREATED);
 	}
 	

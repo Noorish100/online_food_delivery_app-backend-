@@ -32,6 +32,8 @@ public class CartServiceImpl implements CartService{
 	@Autowired
 	private CustomerDAO customerDAO;
 	
+	@Autowired
+	private CustomerServiceImpl customerServiceImpl;
 
 	@Override
 	public FoodCart addItemToCart(Integer cartid, Integer itemid) throws ItemUnavailable {
@@ -52,12 +54,7 @@ public class CartServiceImpl implements CartService{
 				return fd;
 			}
 			throw new ItemUnavailable("Sorry no item found");
-			
-			
-			
-			
 		}		
-		
 	 throw new NoItemFoundInFoodcart("not found");
 	}
 
@@ -76,12 +73,8 @@ public class CartServiceImpl implements CartService{
        	FoodCart existingcart= f.get();
        	
        	return existingcart;
-       	
-       	
 	   }
-		 throw new NoItemFoundInFoodcart("not found");
-
-		
+		 throw new NoItemFoundInFoodcart("not found");		
 	}
 
 	@Override
@@ -98,8 +91,35 @@ public class CartServiceImpl implements CartService{
 	       	
 		   }
 			 throw new NoItemFoundInFoodcart("not found");
+	}
+
+	@Override //extra method controller not exist
+	public FoodCart cartDetailsforOrder(Integer customerId, Integer quantity, Integer cartId)
+			throws ItemUnavailable {
 		
+		Customer customer = customerServiceImpl.viewCustomer(customerId);
 		
+		if( customer != null ) {
+			
+			Optional<FoodCart> opt= cartDao.findById(cartId);
+			
+			if(opt.isPresent()) {
+				
+				FoodCart existingCart= opt.get();
+				
+				cartDao.save(existingCart);
+				
+				return existingCart;
+				
+			}
+			else{
+				throw new ItemUnavailable("Cart is Empty..!");
+			}
+		}
+		
+		else{
+			throw new ItemUnavailable("Please enter correct credentials...");
+		}
 	}
 
 
