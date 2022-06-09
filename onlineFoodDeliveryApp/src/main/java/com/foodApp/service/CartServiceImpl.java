@@ -32,26 +32,30 @@ public class CartServiceImpl implements CartService{
 	@Autowired
 	private CustomerDAO customerDAO;
 	
-	
 
 	@Override
-	public FoodCart addItemToCart(Integer id, String item) throws ItemUnavailable {
+	public FoodCart addItemToCart(Integer cartid, Integer itemid) throws ItemUnavailable {
 		
 		
-		Optional<Customer> optR = customerDAO.findById(id);
+		Optional<FoodCart> optR = cartDao.findById(cartid);
 		
 		if(optR.isPresent()) {
 			
-			Item i = itemDao.findByItemName(item);
+			Optional<Item> i= itemDao.findById(itemid);
 			
-			if(i != null) {
-			  
-				FoodCart c=new FoodCart();
+		     Item igotit =i.get();
+			if(i!=null) {
 				
-				c.getItems().add(i);
+				FoodCart fd =optR.get();
+				fd.getItems().add(igotit);
 				
-				
+				return fd;
 			}
+			throw new ItemUnavailable("Sorry no item found");
+			
+			
+			
+			
 		}		
 		
 	 throw new NoItemFoundInFoodcart("not found");
