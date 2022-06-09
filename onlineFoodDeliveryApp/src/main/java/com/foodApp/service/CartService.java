@@ -3,11 +3,12 @@ package com.foodApp.service;
 import javax.validation.Valid;
 import com.foodApp.Exception.ItemUnavailable;
 import com.foodApp.model.FoodCart;
+import com.foodApp.model.Item;
 import com.foodApp.model.Restaurant;
 
 public interface CartService{	
 	
-	public FoodCart addItemToCart(Integer customerId, String itemName) throws ItemUnavailable;
+	public FoodCart addItemToCart(Integer cartid, Integer itemname) throws ItemUnavailable;
 //	public List<CartItem> getCartItems(String token);
 //	public Cart removeItemFromCart(CartDto cartDto,String token) throws ItemUnavailable;
 
