@@ -1,18 +1,17 @@
 package com.foodApp.service;
 
 import com.foodApp.Exception.BillNotFoundException;
-import com.foodApp.model.Bill;
+
 import com.foodApp.model.Customer;
 import com.foodApp.model.OrderDetails;
-import com.foodApp.model.Restaurant;
 import com.foodApp.repository.CustomerDAO;
 import com.foodApp.repository.OrderDao;
-import com.foodApp.repository.ResturantDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class OrderServideIml implements OrderService{
     @Autowired
     OrderDao orderDao;
