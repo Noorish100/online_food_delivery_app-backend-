@@ -28,5 +28,4 @@ public class OrderDetails {
 	private String orderStatus;
 	@OneToOne(cascade = CascadeType.ALL)
 	private FoodCart cart;
-	
 }

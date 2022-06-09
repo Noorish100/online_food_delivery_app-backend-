@@ -27,8 +27,7 @@ public class OrderController {
             return  new ResponseEntity<OrderDetails>(orderService.removeOrder(orderDetails),HttpStatus.OK);
         }
         @GetMapping("/saveOrder/{OrderId}")
-        public ResponseEntity<OrderDetails> viewAllOrders(@PathVariable Integer id){
-            return  new ResponseEntity<OrderDetails>(orderService.viewOrderById(id),HttpStatus.FOUND);
+        public ResponseEntity<OrderDetails> viewAllOrders(@PathVariable ("OrderId") Integer OrderId){
+            return  new ResponseEntity<OrderDetails>(orderService.viewOrderById(OrderId),HttpStatus.FOUND);
         }
-
 }
