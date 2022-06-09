@@ -15,7 +15,7 @@ public interface CartService{
 
 	public FoodCart viewCartByCartId(Integer cartId)throws ItemUnavailable;
 
-	public Restaurant removeCart(Integer cartId)throws ItemUnavailable;
+	public FoodCart removeCart(Integer cartId)throws ItemUnavailable;
 
 }
 

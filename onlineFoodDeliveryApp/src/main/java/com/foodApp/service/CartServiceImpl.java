@@ -81,9 +81,21 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public Restaurant removeCart(Integer cartId) {
-		// TODO Auto-generated method stub
-		return null;
+	public FoodCart removeCart(Integer cartId) {
+		
+		   Optional<FoodCart> f=cartDao.findById(cartId);
+		   if(f.isPresent()) {
+	       	FoodCart existingcart= f.get();
+	       	
+	       	 cartDao.delete(existingcart);
+	       	
+	       	return existingcart;
+	       	
+	       	
+		   }
+			 throw new NoItemFoundInFoodcart("not found");
+		
+		
 	}
 
 
