@@ -99,7 +99,7 @@ public class CartServiceImpl implements CartService{
 		
 		Customer customer = customerServiceImpl.viewCustomer(customerId);
 		
-		if( customer != null ) {
+		if( customer != null ){
 			
 			Optional<FoodCart> opt= cartDao.findById(cartId);
 			
