@@ -16,19 +16,19 @@ import java.util.List;
         @PostMapping("/saveBill")
         public ResponseEntity<Bill> saveBill(@RequestBody Bill bills){
 
-            return new ResponseEntity<Bill>(billService.SaveBill(bills), HttpStatus.CREATED);
+            return new ResponseEntity<>(billService.SaveBill(bills), HttpStatus.CREATED);
         }
         @PutMapping("/updateBills")
         public ResponseEntity<Bill> UpdateBill(@RequestBody Bill bills){
-            return new ResponseEntity<Bill>(billService.UpdateBill(bills),HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(billService.UpdateBill(bills),HttpStatus.ACCEPTED);
         }
         @PutMapping("/removeBill")
         public ResponseEntity<Bill> deleteBill(Bill bill){
-            return  new ResponseEntity<Bill>(billService.removeBill(bill),HttpStatus.OK);
+            return  new ResponseEntity<>(billService.removeBill(bill),HttpStatus.OK);
         }
         @PutMapping("findbetweendates/{sDate}/{eDate}")
         public ResponseEntity<List<Bill>> billsbetweendates(@PathVariable LocalDate sDate,@PathVariable LocalDate eDate ){
-            return new ResponseEntity<List<Bill>>(billService.billBetweenDate(sDate,eDate),HttpStatus.FOUND);
+            return new ResponseEntity<>(billService.billBetweenDate(sDate,eDate),HttpStatus.FOUND);
         }
     }
 
