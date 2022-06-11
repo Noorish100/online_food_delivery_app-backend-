@@ -53,7 +53,7 @@ public class OrderController {
         		throw new NotFoundException();
         }
         @GetMapping("/saveOrder/{OrderId}")
-        public ResponseEntity<OrderDetails> viewAllOrders(@PathVariable Integer id,@RequestParam String key){
+        public ResponseEntity<OrderDetails> viewAllOrders(@PathVariable("OrderId") Integer id,@RequestParam String key){
         	
         	Integer sessionId = currentUserSessionService.getCurrentUserSessionId(key);
         	

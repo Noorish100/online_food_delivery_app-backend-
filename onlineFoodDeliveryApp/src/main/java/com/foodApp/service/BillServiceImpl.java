@@ -54,7 +54,7 @@ public class BillServiceImpl implements BillService {
        List<Item> orderlist= customer.getFoodCart().getItems();
        Double sum=0.0;
        for(Item i:orderlist){
-          sum+= i.getCost()*i.getQuantity();
+          sum+= (i.getCost()*i.getQuantity());
        }
        return "[ Bill is for "+customer.getName()+" is "+sum+" ]";
     }

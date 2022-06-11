@@ -49,7 +49,15 @@ public class CartServiceImpl implements CartService{
 			if(i!=null) {
 				
 				FoodCart fd =optR.get();
-				fd.getItems().add(igotit);
+				
+				List<Item> l1=new ArrayList<>();
+				
+				l1.addAll(fd.getItems());
+				l1.add(igotit);
+				
+			    fd.setItems(l1);
+				
+				System.out.println(fd);
 				
 				return fd;
 			}
