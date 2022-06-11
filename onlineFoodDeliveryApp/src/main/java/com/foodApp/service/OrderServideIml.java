@@ -1,8 +1,10 @@
 package com.foodApp.service;
 
+
 import com.foodApp.Exception.BillNotFoundException;
 
 import com.foodApp.model.Customer;
+import com.foodApp.model.Item;
 import com.foodApp.model.OrderDetails;
 import com.foodApp.repository.CustomerDAO;
 import com.foodApp.repository.OrderDao;
@@ -13,8 +15,11 @@ import java.util.List;
 import java.util.Optional;
 @Service
 public class OrderServideIml implements OrderService{
-    @Autowired
+    
+	@Autowired
     OrderDao orderDao;
+	@Autowired
+	CustomerDAO customerDAO;
 
     @Override
     public OrderDetails addOrders(OrderDetails orderDetails) {
@@ -49,6 +54,13 @@ public class OrderServideIml implements OrderService{
         OrderDetails orderDetails1=orderDao.findById(id).orElseThrow(()-> new BillNotFoundException("Order not Found"));
 
         return orderDetails1;
+    }
+
+    @Override
+    public List<Item> viewOrdersByCustomerId(Integer customerId) {
+        Customer customer=customerDAO.findById(customerId).orElseThrow(()-> new BillNotFoundException("Customer Not Found"));
+        List<Item> orderlist= customer.getFoodCart().getItems();
+        return orderlist;
     }
 
 
