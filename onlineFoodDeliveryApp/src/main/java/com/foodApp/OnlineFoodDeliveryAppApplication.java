@@ -11,7 +11,7 @@ public class OnlineFoodDeliveryAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OnlineFoodDeliveryAppApplication.class, args);
 		
-		System.out.println("gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
+		System.out.println("Welcome to Online Food Delvery App");
 		
 	}
 }

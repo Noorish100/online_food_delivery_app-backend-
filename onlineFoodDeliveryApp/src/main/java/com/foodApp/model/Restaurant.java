@@ -37,7 +37,6 @@ public class Restaurant {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 	
-	@OneToMany(targetEntity = Item.class,cascade = CascadeType.ALL)	
-	@JoinColumn(name="restaurantId", referencedColumnName = "restaurantId")
+	@OneToMany(targetEntity = Item.class,cascade = CascadeType.ALL)
 	private List<Item> item = new ArrayList<>();
 }

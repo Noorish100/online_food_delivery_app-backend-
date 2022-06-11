@@ -30,7 +30,4 @@ public class Item{
 	private String itemName;
 	private Integer quantity;
 	private Double cost;
-//	@ManyToMany(targetEntity = Restaurant.class,cascade = CascadeType.ALL)
-//	@JoinColumn(name="itemId")
-//	private List<Restaurant> restaurants;
 }
