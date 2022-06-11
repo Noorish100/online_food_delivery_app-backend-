@@ -33,6 +33,6 @@ public class FoodCart {
 	private Customer customer;
 	
 	@OneToMany(targetEntity = Item.class,cascade = CascadeType.ALL)
-	@JoinColumn(name="cartId", referencedColumnName = "cartId")
+
 	private List<Item> items;
 }
