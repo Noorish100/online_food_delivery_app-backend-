@@ -30,7 +30,7 @@ This entire journey of making the project was awesome. We have learned lots of t
 ## So journey started from here!
 
 ### Snapshots of our project :- 
-- ## <span style="color:red"> Home Page </span>
+-
 <div align="center">
  
  ER diagram ⬇️ 
